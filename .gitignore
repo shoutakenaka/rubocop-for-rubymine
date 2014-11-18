@@ -1,6 +1,8 @@
 # IDEA project files with local data
 **/.idea/workspace.xml
 **/.idea/tasks.xml
+**/.idea/vcs.xml
+**/.idea/kannotator.xml
 
 # Java/Kotlin intermediate files
 /out

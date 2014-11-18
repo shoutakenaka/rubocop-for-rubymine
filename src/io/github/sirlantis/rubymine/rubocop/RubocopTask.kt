@@ -110,7 +110,10 @@ class RubocopTask(val module: Module, val paths: List<String>) : Task.Background
             parts.addAll(array(rvmCommand.canonicalPath, ".", "do"))
         }
 
-        if (usesBundler) {
+        if (usesVagrant) {
+            parts.addAll(array("vagrant", "exec"))
+        }
+        else if (usesBundler) {
             parts.addAll(array("bundle", "exec"))
         }
 
@@ -139,6 +142,11 @@ class RubocopTask(val module: Module, val paths: List<String>) : Task.Background
         }
 
         file as VirtualFile
+    }
+
+    val usesVagrant: Boolean by Delegates.lazy {
+        // TODO: better check possible?
+        workDirectory.findChild("Vagrantfile") != null
     }
 
     val usesBundler: Boolean by Delegates.lazy {
